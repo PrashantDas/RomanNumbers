@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}Roman Numerals{% endblock %}</title>
+  </head>
+  <body>
+    {% block content %}
+    <div class="row">                    
+        <div class="col-5">
+            <div class="border border-secondary border-3 rounded-3 p-4 m-4">
+                <h2>Arabic Numeral:</h2>
+                <p>(Enter any number between 1 and 3999)</p>
+                <form action="." method="POST">
+                    {% csrf_token %}
+                    {{ data_form|crispy }}
+                    <br>
+                    <button type="submit" class="btn btn-outline-secondary">Submit</button>
+                </form>
+            </div>
+            <br>
+            <hr>
+            <br>
+            {% if result %}
+            <div class="border border-secondary border-3 rounded-3 p-4 m-4">
+                <h2>Roman Numeral:</h2>
+                <h1>{{ result }}</h1>
+            </div>
+            {% endif %}
+        </div>                 
+        <div class="col-6 offset-1">
+            <div class="border border-light border-1 rounded-3 p-4 m-4">
+            <img src="https://picsum.photos/500/400?grayscale" alt="painting">
+            </div>
+        </div>
+    </div>
+
+    
+
+    {% endblock %}
+  </body>
+</html>
